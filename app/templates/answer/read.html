@@ -1,0 +1,20 @@
+{% extends "base/base.html" %}
+
+{% set task = answer.task %}
+
+{% set backref = url_for("task.read", task_id=task.id) %}
+
+{% block content %}
+    {% include "task/assets/task_answer.html" %}
+    {% include "answer/assets/answer_full.html" %}
+
+    {% if task.is_expired() %}
+        {% if answer.is_assessed() %}
+            {{ button("Изменить оценку", url_for("answer.assess", answer_id=answer.id), "primary") }}
+        {% else %}
+            {{ button("Оценить ответ", url_for("answer.assess", answer_id=answer.id), "primary") }}
+        {% endif %}
+    {% else %}
+        {{ button("Оценить ответ", url_for("answer.assess", answer_id=answer.id), "primary", disabled="Вы не можете оценить ответ до окончания срока выполнения задания") }}
+    {% endif %}
+{% endblock %}

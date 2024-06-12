@@ -1,0 +1,44 @@
+{% macro form_field(field, color="primary", horizontal_columns=('lg', 2, 10)) %}
+    {% if field.type == 'RadioField' %}
+        {% for item in field %}
+            <div class="form-check form-check-inline">
+                {{ item(class="form-check-input") }}
+                <label class="form-check-label" for="{{ item.label.field_id }}">{{ item.label.text }}</label>
+            </div>
+        {% endfor %}
+    {% elif field.type == 'SubmitField' %}
+        {{ field(class='btn btn-' + color + ' rounded-5 border w-100') }}
+    {% elif field.type == 'FileField' %}
+        {{ field(**kwargs)|safe }}
+    {% else %}
+        {% if field.type == "StrippedTextAreaField" %}
+            {{ field(class="form-control" + (" is-invalid" if field.errors else '') + ' rounded-5', style="height: 300px;", placeholder="", **kwargs)|safe }}
+        {% else %}
+            {{ field(class="form-control" + (" is-invalid" if field.errors else '') + ' rounded-5', placeholder="", **kwargs)|safe }}
+        {% endif %}
+        {{ field.label()|safe }}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        {% elif field.description %}
+            <p class="help-block">{{ field.description|safe }}</p>
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+
+{% macro quick_form(form, name="", color="primary", text="dark", enctype=None, novalidate=True) %}
+    <h2 class="ms-3 mb-3 text-{{ text }} fw-bold">{{ name }}</h2>
+    <form method="post" class="form" {% if enctype %} enctype="{{ enctype }}"{% endif %}
+          {% if novalidate %}novalidate{% endif %}>
+        {{ form.hidden_tag() }}
+        {% for field in form %}
+            {% if not bootstrap_is_hidden_field(field) %}
+                <div class='form-floating{% if field.errors %} is-invalid{% endif %} text-dark m-2'>
+                    {{ form_field(field, color) }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </form>
+{% endmacro %}

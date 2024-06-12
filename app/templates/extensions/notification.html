@@ -1,0 +1,12 @@
+{% macro flashed_messages() -%}
+    {% set messages = get_flashed_messages(with_categories=True) -%}
+    {% if messages -%}
+        {% for cat, msg in messages %}
+            <div class="alert alert-{{ cat }} alert-dismissible fade show rounded-5"
+                 role="alert">
+                {{ msg }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+            </div>
+        {%- endfor -%}
+    {% endif -%}
+{% endmacro -%}

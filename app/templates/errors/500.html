@@ -1,0 +1,9 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <h1>Ошибка 500</h1>
+    <h2>Что-то сломалось...</h2>
+    <p>Сообщите администратору об ошибке</p>
+    <hr>
+    <a class="text-black" href="{{ url_for(config.BASE_URL) }}">Вернуться</a>
+{% endblock %}

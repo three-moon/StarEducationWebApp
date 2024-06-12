@@ -1,0 +1,14 @@
+<div class="card h-100 border-0 rounded-5 mt-2 mb-2">
+    <div class="card-header bg-light border border-2 border-dark rounded-top-5">
+        <h5 class="fw-bold mt-1 mb-1">{{ task.name }}
+            {% set badges = task.badges %}
+            {% include "extensions/badges.html" %}
+        </h5>
+    </div>
+    <div class="card-body bg-light border border-2 border-top-0 border-dark">
+        <h5 class="card-text">{{ task.description }}</h5>
+    </div>
+    <div class="card-footer bg-light border border-2 border-top-0 border-dark rounded-bottom-5">
+        {{ task.pretty_due }}
+    </div>
+</div>

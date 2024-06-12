@@ -1,0 +1,2 @@
+class TaskDueException(BaseException):
+    pass

@@ -1,0 +1,14 @@
+{% extends "base/student_base.html" %}
+
+{% set backref = url_for("user.select_register") %}
+
+{% block content %}
+    <div class="row justify-content-end">
+        <div class="col-md-5 d-none d-md-block">
+            <img style="max-height: 85vh" class="img-fluid" src="{{ url_for("static", filename="img/student.svg") }}" alt="">
+        </div>
+        <div class="col-md-7">
+            {{ quick_form(form, "Добро пожаловать!", "primary", text="light") }}
+        </div>
+    </div>
+{% endblock %}

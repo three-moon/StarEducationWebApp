@@ -1,0 +1,26 @@
+{% macro modal(label, url, color) %}
+    <button type="button" class="btn btn-{{ color }} rounded-5 border border-black border-2 m-1" data-bs-toggle="modal"
+            data-bs-target="#modal">
+        {{ label }}
+    </button>
+
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-light rounded-5 border border-dark border-2">
+                <div class="modal-header border-dark">
+                    <h1 class="modal-title fs-5" id="modalLabel">Подтвердите своё действие</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer border-dark">
+                    <button type="button" class="btn btn-secondary rounded-5 border border-black border-2 m-1"
+                            data-bs-dismiss="modal">Отмена
+                    </button>
+                    <button class="btn btn-{{ color }} rounded-5 border border-black border-2 m-1"
+                            onclick='document.location = "{{ url }}"'>
+                        {{ label }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

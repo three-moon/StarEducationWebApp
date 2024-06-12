@@ -1,0 +1,15 @@
+<div class="card h-100 border-0 rounded-5 mt-2 mb-2" onclick='document.location = "{{ url_for("task.read", task_id=task.id) }}"'>
+    <div class="card-header bg-light border border-2 border-dark rounded-5 p-3">
+        <div class="row justify-content-between">
+            <div class="col text-start">
+                <h4 class="fw-bold mt-1 mb-1">{{ task.name }}
+                    {% set badges = task.badges_with_answer %}
+                    {% include "extensions/badges.html" %}
+                </h4>
+            </div>
+            <div class="col text-end">
+                <p class="fw-bold mt-1 mb-1">{{ task.pretty_due }}</p>
+            </div>
+        </div>
+    </div>
+</div>

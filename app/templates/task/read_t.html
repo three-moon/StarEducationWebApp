@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+
+{% set backref = url_for("group.read", key=task.group.key) %}
+
+{% set background = "primary_star.svg" %}
+
+{% block content %}
+    {{ button("Редактировать задание", url_for("task.update", task_id=task.id), "primary") }}
+    {{ button("Удалить задание", url_for("task.delete", task_id=task.id), "secondary") }}
+
+    {% include "task/assets/task_full.html" %}
+
+    {% if is_completed %}
+        {{ button("Непроверенные ответы", url_for("task.read", task_id=task.id), "light") }}
+        {{ header("Проверенные ответы") }}
+    {% else %}
+        {{ button("Проверенные ответы", url_for("task.read", task_id=task.id, is_completed=1), "light") }}
+        {{ header("Непроверенные ответы") }}
+    {% endif %}
+
+    {% if answers %}
+        {% for answer in answers %}
+            {% include "answer/assets/answer_task.html" %}
+        {% endfor %}
+    {% else %}
+        {{ empty("empty_answers.svg") }}
+    {% endif %}
+{% endblock %}

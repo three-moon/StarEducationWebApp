@@ -1,0 +1,12 @@
+Flask==2.3.2
+Flask-Bootstrap==3.3.7.1
+Flask-Login==0.6.2
+Flask-Migrate==4.0.4
+Flask-SQLAlchemy==2.5.1
+Flask-WTF==1.1.1
+SQLAlchemy==1.4.21
+python-dotenv==1.0.0
+wtforms_sqlalchemy
+WTForms==3.1.2
+Werkzeug==2.3.6
+alembic==1.11.1

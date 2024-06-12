@@ -1,0 +1,13 @@
+{% macro button(label, url, color, disabled=None) %}
+    {% if disabled %}
+        <span class="d-inline-block" tabindex="0"
+              data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="{{ disabled }}">
+    {% endif %}
+        <button class="btn btn-{{ color }} rounded-5 border border-black border-2 m-1"
+            type="button" onclick='document.location = "{{ url }}"' {% if disabled %}disabled{% endif %}>
+            {{ label }}
+        </button>
+    {% if disabled %}
+        </span>
+    {% endif %}
+{% endmacro %}

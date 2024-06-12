@@ -1,0 +1,10 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <div class="container d-block d-md-none p-0">
+        <img class="w-100" src="{{ url_for("static", filename="img/index_phone.svg") }}" alt="">
+    </div>
+    <div class="container d-none d-md-block text-center p-0">
+        <img class="img-fluid" style="max-height: 85vh" src="{{ url_for("static", filename="img/index.svg") }}" alt="">
+    </div>
+{% endblock %}

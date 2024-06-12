@@ -1,0 +1,39 @@
+{% extends "base/base.html" %}
+
+{% set backref = url_for("group.all") %}
+
+{% set background = "secondary_star.svg" %}
+
+{% block content %}
+    {% if current_user.is_teacher %}
+        {{ button("Редактировать группу", url_for("group.update", key=group.key), "primary") }}
+        {{ modal("Удалить группу", url_for("group.delete", key=group.key), "secondary") }}
+        {{ button("Список группы", url_for("group.students", key=group.key), "light") }}
+    {% endif %}
+    {% if current_user.is_student %}
+        {{ modal("Покинуть группу", url_for("group.leave", key=group.key), "primary") }}
+    {% endif %}
+
+    {% include "group/assets/group_full.html" %}
+
+    {% if current_user.is_teacher %}
+        {{ button("Новое задание", url_for("task.create", key=group.key), "light") }}
+    {% endif %}
+    {% if current_user.is_student %}
+    {% endif %}
+    {% if is_completed %}
+        {{ button("Незавершенные задания", url_for("group.read", key=group.key), "light") }}
+        {{ header("Завершенные задания") }}
+    {% else %}
+        {{ button("Завершенные задания", url_for("group.read", key=group.key, is_completed=1), "light") }}
+        {{ header("Незавершенные задания") }}
+    {% endif %}
+
+    {% if tasks %}
+        {% for task in tasks %}
+            {% include "task/assets/task_short.html" %}
+        {% endfor %}
+    {% else %}
+        {{ empty("empty_tasks.svg") }}
+    {% endif %}
+{% endblock %}

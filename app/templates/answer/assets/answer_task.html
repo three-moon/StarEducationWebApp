@@ -1,0 +1,12 @@
+<div class="card h-100 border-0 rounded-5 mt-2 mb-2"
+     onclick='document.location = "{{ url_for("answer.read", answer_id=answer.id) }}"'>
+    <div class="card-header bg-secondary border border-2 border-dark rounded-top-5">
+        <h5 class="fw-bold mt-1 mb-1">{{ answer.student.user.full_name }}
+            {% set badges = answer.badges %}
+            {% include "extensions/badges.html" %}
+        </h5>
+    </div>
+    <div class="card-footer bg-light border border-2 border-top-0 border-dark rounded-bottom-5">
+        {{ answer.pretty_timestamp }}
+    </div>
+</div>

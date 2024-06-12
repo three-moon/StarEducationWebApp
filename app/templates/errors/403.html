@@ -1,0 +1,8 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <h1>Ошибка 403</h1>
+    <h2>Нет доступа</h2>
+    <hr>
+    <a class="text-black" href="{{ url_for(config.BASE_URL) }}">Вернуться</a>
+{% endblock %}

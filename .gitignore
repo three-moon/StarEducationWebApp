@@ -1,0 +1,7 @@
+/database.db
+/.env
+/.flaskenv
+/logs/
+/.venv/
+/.idea/
+*/__pycache__/

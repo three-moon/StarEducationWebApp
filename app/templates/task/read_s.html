@@ -1,0 +1,23 @@
+{% extends "base/base.html" %}
+
+{% set backref = url_for("group.read", key=task.group.key) %}
+
+{% set background = "primary_star.svg" %}
+
+{% block content %}
+    {% include "task/assets/task_full.html" %}
+
+    {% if not task.answer %}
+        {{ button("Ответить на задание", url_for("answer.create", task_id=task.id), "primary") }}
+    {% else %}
+        {% set answer = task.answer %}
+        {% if not answer.is_expired() %}
+            {{ button("Редактировать ответ", url_for("answer.update", answer_id=answer.id), "primary") }}
+            {{ button("Удалить ответ", url_for("answer.delete", answer_id=answer.id), "secondary") }}
+        {% else %}
+            {{ button("Редактировать ответ", url_for("answer.update", answer_id=answer.id), "primary", disabled="Нельзя редактировать ответ после истечения срока выполнения задания") }}
+            {{ button("Удалить ответ", url_for("answer.delete", answer_id=answer.id), "secondary", disabled="Нельзя удалить ответ после истечения срока выполнения задания") }}
+        {% endif %}
+        {% include "answer/assets/answer_full.html" %}
+    {% endif %}
+{% endblock %}

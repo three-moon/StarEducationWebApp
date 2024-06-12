@@ -1,0 +1,11 @@
+{% extends "base/base.html" %}
+
+{% set task = answer.task %}
+
+{% set backref = url_for("answer.read", answer_id=answer.id) %}
+
+{% block content %}
+    {% include "task/assets/task_answer.html" %}
+    {% include "answer/assets/answer_full.html" %}
+    {% include "answer/assets/form.html" %}
+{% endblock %}

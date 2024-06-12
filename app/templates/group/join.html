@@ -1,0 +1,9 @@
+{% extends "base/base.html" %}
+
+{% set backref = url_for("group.all") %}
+
+{% set background = "primary_star2.svg" %}
+
+{% block content %}
+    {% include "group/assets/form.html" %}
+{% endblock %}

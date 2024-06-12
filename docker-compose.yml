@@ -1,0 +1,11 @@
+version: '3'
+services:
+ web:
+  build: .
+  command: python edu.py
+  volumes:
+   - .:/usr/src/app
+  ports:
+   - "5000:5000"
+  environment:
+   DATABASE_URL: sqlite:///../database.db

@@ -1,0 +1,20 @@
+{% extends "base/base.html" %}
+
+{% set backref = url_for(config.BASE_URL) %}
+
+{% block content %}
+    {{ header(title) }}
+    <div class="card h-100 border-0 mt-2 mb-2">
+        <div class="card-header bg-primary border border-2 border-dark rounded-top-5">
+            <h5 class="fw-bold mt-1 mb-1">{{ current_user.login }}</h5>
+        </div>
+        <div class="card-body bg-light border border-2 border-top-0 border-dark">
+            <h5 class="card-text">{{ current_user.full_name }}</h5>
+        </div>
+        <div class="card-footer bg-light border border-2 border-top-0 border-dark rounded-bottom-5">
+            {{ button("Редактировать профиль", url_for("user.update"), "primary") }}
+            {{ button("Сменить пароль", url_for("user.change_password"), "primary") }}
+            {{ modal("Удалить профиль", url_for("user.delete"), "secondary") }}
+        </div>
+    </div>
+{% endblock %}

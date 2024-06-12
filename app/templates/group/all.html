@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    {% if current_user.is_teacher %}
+        {{ button("Создать группу", url_for("group.create"), "primary") }}
+    {% endif %}
+    {% if current_user.is_student %}
+        {{ button("Присоединиться к группе", url_for("group.join"), "primary") }}
+    {% endif %}
+
+    {{ header(title) }}
+
+    {% if groups %}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 mt-2">
+            {% for group in groups %}
+                <div class="col mb-2">
+                    {% include "group/assets/group_short.html" %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {{ empty("empty_groups.svg") }}
+    {% endif %}
+{% endblock %}

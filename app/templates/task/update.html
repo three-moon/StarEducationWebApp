@@ -1,0 +1,9 @@
+{% extends "base/base.html" %}
+
+{% set backref = url_for("task.read", task_id=task.id) %}
+
+{% set background = "secondary_star2.svg" %}
+
+{% block content %}
+    {% include "task/assets/form.html" %}
+{% endblock %}

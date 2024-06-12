@@ -1,0 +1,23 @@
+{% extends "base/base.html" %}
+
+{% set backref = url_for("group.read", key=group.key) %}
+
+{% set background = "secondary_star.svg" %}
+
+{% block content %}
+    {% include "group/assets/group_full.html" %}
+
+    {{ header(title) }}
+
+    {% if group.students %}
+        <div class="row row-cols-2 row-cols-md-3 mt-2">
+            {% for student in group.students %}
+                <div class="col">
+                    {% include "group/assets/student.html" %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {{ empty("empty_students.svg") }}
+    {% endif %}
+{% endblock %}

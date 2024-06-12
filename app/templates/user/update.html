@@ -1,0 +1,7 @@
+{% extends "base/base.html" %}
+
+{% set backref = url_for("user.settings") %}
+
+{% block content %}
+    {% include "user/assets/form.html" %}
+{% endblock %}
